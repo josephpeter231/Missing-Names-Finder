@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCopy } from '@fortawesome/free-solid-svg-icons';
 
+
 class StudentNameComparison extends Component {
   constructor(props) {
     super(props);
@@ -81,11 +82,9 @@ class StudentNameComparison extends Component {
     this.setState({ inputText: event.target.value });
   };
 
-  // Function to compare names and update the missingNames state
   compareNames = () => {
     const { inputText, constantNames } = this.state;
 
-    // Split the input into an array of names using line breaks
     const inputNames = inputText
       .trim()
       .split(/\r?\n/)
@@ -108,35 +107,41 @@ class StudentNameComparison extends Component {
 
   render() {
     return (
-      <div className="max-w-md mx-auto p-4 bg-white rounded shadow-lg">
-        <h1 className="text-2xl font-bold mb-4">Remaining Student Names</h1>
-        <textarea
-          className="w-full px-3 py-2 border rounded focus:outline-none focus:ring focus:border-blue-500"
-          rows="5"
-          value={this.state.inputText}
-          onChange={this.handleInputChange}
-          placeholder="Enter student names (one per line)"
-        />
-        <div className="mt-4">
-          <button
-            className="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded mr-2"
-            onClick={this.compareNames}
-          >
-            Find Remaining Names
-          </button>
-          <button
-            className="bg-green-500 hover:bg-green-700 text-white py-2 px-4 rounded"
-            onClick={this.copyToClipboard}
-          >
-            Copy Remaining Names <FontAwesomeIcon icon={faCopy} />
-          </button>
+      <div
+        className="min-h-screen flex items-center justify-center"
+        style={{ backgroundImage: `url(https://media.istockphoto.com/id/1294603953/vector/abstract-black-stripes-diagonal-background.jpg?s=612x612&w=0&k=20&c=nQZHTk-o97cNVqWnUe8BJg0A5jQG0tqylquzbt9YtcQ=)` }}
+      >
+        <div className="max-w-md  bg-white bg-opacity-80 p-8 rounded-lg shadow-md">
+        <h1 className="text-2xl font-bold text-center">ECE-A</h1>
+          <h1 className="text-2xl font-bold mb-4 text-center">Missing Student Names Finder</h1>
+          <textarea
+            className="w-full px-3 py-2 border rounded focus:outline-none focus:ring focus:border-gray-500"
+            rows="5"
+            value={this.state.inputText}
+            onChange={this.handleInputChange}
+            placeholder="Enter student names (one per line)"
+          />
+          <div className="mt-4 flex items-center">
+            <button
+              className="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded mr-2"
+              onClick={this.compareNames}
+            >
+              Find Remaining Names
+            </button>
+            <button
+              className="bg-green-700 hover:bg-green-900 text-white py-2 px-4 rounded"
+              onClick={this.copyToClipboard}
+            >
+              Copy Missing Names <FontAwesomeIcon icon={faCopy} />
+            </button>
+          </div>
+          <h2 className="text-lg font-semibold mt-4">Remaining Names:</h2>
+          <ul className="list-disc ml-6 mt-2">
+            {this.state.missingNames.map((name, index) => (
+              <li key={index}>{name}</li>
+            ))}
+          </ul>
         </div>
-        <h2 className="text-lg font-semibold mt-4">Remaining Names:</h2>
-        <ul className="list-disc ml-6 mt-2">
-          {this.state.missingNames.map((name, index) => (
-            <li key={index}>{name}</li>
-          ))}
-        </ul>
       </div>
     );
   }
