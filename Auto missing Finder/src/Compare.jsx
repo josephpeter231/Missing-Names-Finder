@@ -153,7 +153,7 @@ class StudentNameComparison extends Component {
           </ul>
          
         </div>
-        <a  href="https://www.linkedin.com/in/josephpeter-j/" className='mt-24 text-xs p-1 rounded-lg bg-gray-600 border hover:bg-gray-800 text-white'>Developed and Designed by Joseph Peter J</a>
+        <a  href="https://www.linkedin.com/in/josephpeter-j/" className='mt-24 text-xs p-1 rounded-lg bg-gray-600 border hover:bg-gray-800 text-white'>Designed and Developed by Joseph Peter J</a>
       </div>
       
     );
