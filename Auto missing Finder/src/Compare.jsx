@@ -125,7 +125,7 @@ class StudentNameComparison extends Component {
           </h1>
           <textarea
             className="w-full px-3 py-2 border rounded focus:outline-none focus:ring focus:border-gray-500"
-            rows="5"
+            rows="8"
             value={this.state.inputText}
             onChange={this.handleInputChange}
             placeholder="Enter student names (one per line)"
