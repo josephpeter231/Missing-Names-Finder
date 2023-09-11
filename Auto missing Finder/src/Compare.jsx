@@ -143,7 +143,7 @@ class StudentNameComparison extends Component {
               Copy Missing Names <FontAwesomeIcon icon={faCopy} />
             </button>
           </div>
-          <h2 className="text-lg font-semibold mt-4">Remaining Names:</h2>
+          <h2 className="text-lg font-semibold mt-4">Missing Names:</h2>
           <ul className="list-disc ml-6 mt-2">
             {this.state.missingNames.map((name, index) => (
               <li key={index}>{name}</li>
