@@ -110,9 +110,10 @@ class StudentNameComparison extends Component {
   };
 
   render() {
+   
     return (
       <div
-        className="min-h-screen flex items-center justify-center"
+        className="min-h-screen flex flex-col items-center justify-center"
         style={{
           backgroundImage: `url(https://media.istockphoto.com/id/1294603953/vector/abstract-black-stripes-diagonal-background.jpg?s=612x612&w=0&k=20&c=nQZHTk-o97cNVqWnUe8BJg0A5jQG0tqylquzbt9YtcQ=)`,
         }}
@@ -148,10 +149,15 @@ class StudentNameComparison extends Component {
             {this.state.missingNames.map((name, index) => (
               <li key={index}>{name}</li>
             ))}
+            
           </ul>
+         
         </div>
+        <p className='mt-24 text-xs p-1 rounded-lg bg-gray-600 text-white'>Developed and Designed by <span><a href="https://www.linkedin.com/in/josephpeter-j/">Joseph Peter J</a></span></p>
       </div>
+      
     );
+
   }
 }
 
