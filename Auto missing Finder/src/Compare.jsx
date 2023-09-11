@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCopy } from '@fortawesome/free-solid-svg-icons';
 
-
 class StudentNameComparison extends Component {
   constructor(props) {
     super(props);
@@ -82,17 +81,22 @@ class StudentNameComparison extends Component {
     this.setState({ inputText: event.target.value });
   };
 
+  processName = (name) => {
+    // Remove dots, special characters, and spaces from a name
+    return name.replace(/[^a-zA-Z]/g, '').toUpperCase();
+  };
+
   compareNames = () => {
     const { inputText, constantNames } = this.state;
 
     const inputNames = inputText
       .trim()
       .split(/\r?\n/)
-      .map((name) => name.trim().toUpperCase());
+      .map((name) => this.processName(name));
 
     // Find names in the constant list but not in the input list
     const missingNames = constantNames.filter(
-      (constantName) => !inputNames.includes(constantName.toUpperCase())
+      (constantName) => !inputNames.includes(this.processName(constantName))
     );
 
     this.setState({ missingNames });
@@ -109,11 +113,15 @@ class StudentNameComparison extends Component {
     return (
       <div
         className="min-h-screen flex items-center justify-center"
-        style={{ backgroundImage: `url(https://media.istockphoto.com/id/1294603953/vector/abstract-black-stripes-diagonal-background.jpg?s=612x612&w=0&k=20&c=nQZHTk-o97cNVqWnUe8BJg0A5jQG0tqylquzbt9YtcQ=)` }}
+        style={{
+          backgroundImage: `url(https://media.istockphoto.com/id/1294603953/vector/abstract-black-stripes-diagonal-background.jpg?s=612x612&w=0&k=20&c=nQZHTk-o97cNVqWnUe8BJg0A5jQG0tqylquzbt9YtcQ=)`,
+        }}
       >
-        <div className="max-w-md  bg-white bg-opacity-80 p-8 rounded-lg shadow-md">
-        <h1 className="text-2xl font-bold text-center">ECE-A</h1>
-          <h1 className="text-2xl font-bold mb-4 text-center">Missing Student Names Finder</h1>
+        <div className="max-w-md bg-white bg-opacity-80 p-8 rounded-lg shadow-md">
+          <h1 className="text-2xl font-bold text-center">ECE-A</h1>
+          <h1 className="text-2xl font-bold mb-4 text-center">
+            Missing Student Names Finder
+          </h1>
           <textarea
             className="w-full px-3 py-2 border rounded focus:outline-none focus:ring focus:border-gray-500"
             rows="5"
@@ -129,7 +137,7 @@ class StudentNameComparison extends Component {
               Find Remaining Names
             </button>
             <button
-              className="bg-green-700 hover:bg-green-900 text-white py-2 px-4 rounded"
+              className="bg-green-700 hover.bg-green-900 text-white py-2 px-4 rounded"
               onClick={this.copyToClipboard}
             >
               Copy Missing Names <FontAwesomeIcon icon={faCopy} />
